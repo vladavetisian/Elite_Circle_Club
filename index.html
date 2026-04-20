@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elite Digital Circle | Premium Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0A0A0F;
+            --darker-bg: #07070C;
+            --card-bg: #13131F;
+            --accent: #8B5CF6;
+            --accent-light: #A78BFA;
+            --accent-dark: #7C3AED;
+            --text-primary: #F9FAFB;
+            --text-secondary: #D1D5DB;
+            --text-muted: #9CA3AF;
+            --border-color: #2D2D3A;
+            --success: #10B981;
+            --whatsapp-green: #25D366;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-full: 9999px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; font-size: 14px; }
+        @media (min-width: 768px) { html { font-size: 16px; } }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text-primary); background-color: var(--dark-bg); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4, h5 { font-family: 'Manrope', sans-serif; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, var(--accent-light), #FFFFFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        h2 { font-size: 2rem; color: var(--text-primary); position: relative; display: inline-block; }
+        h3 { font-size: 1.5rem; color: var(--text-primary); }
+        p { margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.95rem; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .section-title p { max-width: 600px; margin: 0 auto; color: var(--text-muted); }
+        .container { width: 92%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        section { padding: 4rem 0; position: relative; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.875rem 1.75rem; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border: none; border-radius: var(--radius-full); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: var(--transition); text-decoration: none; gap: 0.5rem; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4); background: linear-gradient(135deg, var(--accent-light), var(--accent)); }
+        .btn-secondary { background: transparent; border: 2px solid var(--border-color); color: var(--text-primary); box-shadow: none; }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--accent); }
+        .quick-nav-btn { position: fixed; top: 20px; right: 20px; z-index: 1001; width: 50px; height: 50px; background: rgba(19, 19, 31, 0.9); backdrop-filter: blur(10px); border-radius: var(--radius-full); border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; transition: var(--transition); }
+        .quick-nav-btn:hover { background: var(--accent); border-color: var(--accent); transform: scale(1.1); }
+        .stripes { width: 20px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: var(--transition); }
+        .quick-nav-btn.active .stripe1 { transform: rotate(45deg) translate(4px, 4px); }
+        .quick-nav-btn.active .stripe2 { opacity: 0; }
+        .quick-nav-btn.active .stripe3 { transform: rotate(-45deg) translate(4px, -4px); }
+        .quick-nav-sidebar { position: fixed; top: 80px; right: 20px; transform: translateX(100%); z-index: 1000; background: rgba(19, 19, 31, 0.95); backdrop-filter: blur(20px); border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); padding: 1.5rem; min-width: 220px; opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .quick-nav-sidebar.active { transform: translateX(0); opacity: 1; visibility: visible; }
+        .quick-nav-sidebar h3 { font-size: 1rem; margin-bottom: 1rem; color: var(--accent-light); text-align: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; }
+        .quick-nav-links { display: flex; flex-direction: column; gap: 0.75rem; }
+        .quick-nav-link { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-sm); transition: var(--transition); font-weight: 500; font-size: 0.9rem; cursor: pointer; }
+        .quick-nav-link:hover { background: rgba(139, 92, 246, 0.1); color: var(--accent-light); transform: translateX(-5px); }
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 999; padding: 1rem 0; background-color: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Manrope', sans-serif; font-size: 1.5rem; font-weight: 800; color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .mobile-menu-btn { background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); transition: var(--transition); }
+        .mobile-menu-btn:hover { background: rgba(255, 255, 255, 0.05); }
+        .mobile-menu { position: fixed; top: 70px; left: 0; width: 100%; background-color: var(--card-bg); border-top: 1px solid var(--border-color); padding: 1rem; transform: translateY(-100%); opacity: 0; transition: var(--transition); z-index: 998; }
+        .mobile-menu.active { transform: translateY(0); opacity: 1; }
+        .mobile-menu a { display: block; padding: 1rem; color: var(--text-primary); text-decoration: none; border-radius: var(--radius-sm); transition: var(--transition); font-weight: 500; }
+        .mobile-menu a:hover { background: rgba(255, 255, 255, 0.05); color: var(--accent-light); }
+        .hero { padding-top: 8rem; padding-bottom: 4rem; background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15), transparent 50%), radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1), transparent 50%); }
+        .hero-content { text-align: center; max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; }
+        .price-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: var(--radius-full); padding: 0.75rem 1.5rem; margin-bottom: 2rem; font-weight: 700; font-size: 1.25rem; color: var(--accent-light); }
+        .hero-buttons { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+        @media (min-width: 640px) { .hero-buttons { flex-direction: row; justify-content: center; } }
+        .value-cards { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+        @media (min-width: 768px) { .value-cards { grid-template-columns: repeat(3, 1fr); } }
+        .value-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem; transition: var(--transition); }
+        .value-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--shadow-lg); }
+        .value-card-icon { width: 60px; height: 60px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.05)); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--accent-light); font-size: 1.5rem; }
+        .services { background-color: var(--darker-bg); }
+        .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2rem; }
+        @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+        .service-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; transition: var(--transition); text-align: center; }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: var(--shadow); }
+        .service-icon { width: 56px; height: 56px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(124, 58, 237, 0.1)); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--accent-light); font-size: 1.25rem; }
+        .portfolio-showcase { display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-top: 2rem; }
+        .portfolio-photo { flex: 0 0 140px; text-align: center; }
+        .portfolio-photo img { width: 130px; height: 130px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent); box-shadow: 0 0 20px rgba(139,92,246,0.4); }
+        .portfolio-desc { flex: 1; min-width: 260px; }
+        .portfolio-desc h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .portfolio-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.2rem 0; }
+        .portfolio-link-item { background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.3); border-radius: 40px; padding: 0.5rem 1.2rem; transition: var(--transition); }
+        .portfolio-link-item a { color: var(--accent-light); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; font-size: 0.9rem; }
+        .portfolio-link-item:hover { background: var(--accent); border-color: var(--accent); }
+        .portfolio-link-item:hover a { color: white; }
+        .best-project { background: linear-gradient(145deg, #2a1f40, #1e1630); border-left: 4px solid #f7b32b; padding: 1rem 1.5rem; border-radius: 12px; margin-top: 1.2rem; }
+        .best-project a { color: #f9c851; font-weight: 700; font-size: 1.1rem; text-decoration: none; }
+        .concept-note { margin-top: 1rem; color: var(--text-muted); font-style: italic; font-size: 0.9rem; }
+        .testimonials { background-color: var(--darker-bg); }
+        .testimonial-slider { margin-top: 2rem; position: relative; overflow: hidden; }
+        .testimonial-track { display: flex; transition: transform 0.5s ease; }
+        .testimonial-slide { min-width: 100%; padding: 1rem; }
+        .testimonial-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem; }
+        .testimonial-content { position: relative; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .testimonial-content:before { content: '"'; position: absolute; left: 0; top: -10px; font-size: 3rem; color: var(--accent); opacity: 0.3; font-family: Georgia, serif; }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .author-avatar { width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; }
+        .slider-controls { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        .slider-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .slider-btn:hover { background: var(--accent); border-color: var(--accent); }
+        .reviews-note { text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px dashed var(--border-color); padding-top: 1.5rem; }
+        .about-vlad { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2.5rem; margin-top: 3rem; box-shadow: var(--shadow); }
+        .vlad-header { display: flex; align-items: center; gap: 1.8rem; margin-bottom: 1.8rem; flex-wrap: wrap; }
+        .vlad-photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 0 20px rgba(139,92,246,0.5); background: #1e1e2a; }
+        .vlad-title h3 { margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .instagram-check { display: inline-flex; align-items: center; background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5); color: white; font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.9rem; border-radius: var(--radius-full); gap: 6px; }
+        .vlad-badges { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .badge { background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); padding: 0.5rem 1.2rem; border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 500; color: var(--accent-light); display: inline-flex; align-items: center; gap: 6px; }
+        .contact-container { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-top: 2rem; }
+        @media (min-width: 768px) { .contact-container { grid-template-columns: 1fr 1fr; } }
+        .contact-form { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.875rem 1rem; background-color: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-family: 'Inter', sans-serif; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+        /* FIX: Make dropdown options visible */
+        .form-group select option {
+            background-color: var(--card-bg) !important;
+            color: var(--text-primary) !important;
+        }
+        footer { background-color: var(--darker-bg); border-top: 1px solid var(--border-color); padding: 3rem 0 2rem; }
+        .footer-content { display: flex; flex-direction: column; gap: 2rem; }
+        @media (min-width: 768px) { .footer-content { flex-direction: row; justify-content: space-between; align-items: center; } }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; }
+        .social-links { display: flex; gap: 1rem; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); }
+        .social-links a:hover { background: var(--accent); color: white; }
+        .copyright { text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,10,15,0.95); display: flex; align-items: center; justify-content: center; z-index: 9999; opacity: 0; visibility: hidden; transition: 0.3s; }
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal-content { background: var(--card-bg); border: 1px solid var(--accent); border-radius: var(--radius-lg); padding: 2rem; max-width: 500px; width: 90%; text-align: center; }
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .whatsapp-link { display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: var(--whatsapp-green); border-radius: 50%; color: white; font-size: 1.8rem; box-shadow: var(--shadow-lg); text-decoration: none; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s;">
+        <div style="width: 50px; height: 50px; border: 3px solid rgba(139, 92, 246, 0.3); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite;"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo"><div class="logo-icon"><i class="fas fa-crown"></i></div>EliteCircle</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+                <div class="mobile-menu" id="mobileMenu">
+                    <a href="#hero">Home</a><a href="#value">Value</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a><a href="#" onclick="showTerms(); return false;">Terms</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="quick-nav-btn" id="quickNavBtn"><div class="stripes stripe1"></div><div class="stripes stripe2"></div><div class="stripes stripe3"></div></div>
+    <div class="quick-nav-sidebar" id="quickNavSidebar">
+        <h3>Quick Navigation</h3>
+        <div class="quick-nav-links">
+            <a href="#hero" class="quick-nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="#value" class="quick-nav-link"><i class="fas fa-chart-line"></i><span>Value Proposition</span></a>
+            <a href="#services" class="quick-nav-link"><i class="fas fa-code"></i><span>Services</span></a>
+            <a href="#portfolio" class="quick-nav-link"><i class="fas fa-images"></i><span>Portfolio</span></a>
+            <a href="#testimonials" class="quick-nav-link"><i class="fas fa-comment-dots"></i><span>Testimonials</span></a>
+            <a href="#contact" class="quick-nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a>
+            <a href="#" class="quick-nav-link" onclick="showTerms(); return false;"><i class="fas fa-file-contract"></i><span>Terms</span></a>
+        </div>
+    </div>
+
+    <div class="whatsapp-float">
+        <a href="http://wa.me/18184056632" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <section class="hero" id="hero">
+        <div class="container"><div class="hero-content">
+            <div class="price-badge"><i class="fas fa-gem"></i> ELITE CIRCLE</div>
+            <h1>Elite Digital Transformation for Visionary Founders</h1>
+            <p>Join the exclusive circle of entrepreneurs who leverage cutting-edge AI, automation, and digital strategy to scale their businesses exponentially.</p>
+            <div class="hero-buttons"><a href="#contact" class="btn"><i class="fas fa-lock"></i> Secure Membership</a><a href="#value" class="btn btn-secondary"><i class="fas fa-play-circle"></i> Watch Demo</a></div>
+        </div></div>
+    </section>
+
+    <section id="value">
+        <div class="container">
+            <div class="section-title"><h2>Are We An Agency?</h2><p>This isn't an expense—it's a strategic investment that delivers 5-10x ROI.</p></div>
+            <div class="value-cards">
+                <div class="value-card fade-in"><div class="value-card-icon"><i class="fas fa-user-shield"></i></div><h3>Exclusive Member Circle</h3><p>Limited to 50 entrepreneurs globally. Direct access to our core team.</p></div>
+                <div class="value-card fade-in"><div class="value-card-icon"><i class="fas fa-brain"></i></div><h3>AI-Powered Automation</h3><p>Proprietary AI tools that save 30+ hours per week.</p></div>
+                <div class="value-card fade-in"><div class="value-card-icon"><i class="fas fa-chart-line"></i></div><h3>Revenue Growth Engine</h3><p>Members average $3,200+ additional monthly revenue within 90 days.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title"><h2>Comprehensive Digital Services</h2><p>Focused expertise that drives results.</p></div>
+            <div class="services-grid">
+                <div class="service-card fade-in"><div class="service-icon"><i class="fas fa-code"></i></div><h3>Premium Website Development</h3><p>Custom-coded, high-performance websites with advanced animations and SEO.</p></div>
+                <div class="service-card fade-in"><div class="service-icon"><i class="fas fa-robot"></i></div><h3>AI Agents Development</h3><p>Intelligent AI agents that automate tasks, engage customers, and streamline operations.</p></div>
+                <div class="service-card fade-in"><div class="service-icon"><i class="fas fa-paint-brush"></i></div><h3>Brand & UI/UX Design</h3><p>Complete visual identity and user interface designs that communicate luxury and professionalism.</p></div>
+            </div>
+
+            <!-- Vlad Profile with photo -->
+            <div class="about-vlad fade-in">
+                <div class="vlad-header">
+                    <img class="vlad-photo" src="https://www.image2url.com/r2/default/images/1776653212559-ebda3066-73a2-4ab8-bc55-b648a18fc521.jpeg" alt="Vlad" onerror="this.style.background='linear-gradient(145deg, #8B5CF6, #7C3AED)'; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%238B5CF6\'/%3E%3Ctext x=\'50\' y=\'67\' font-size=\'50\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\'%3EV%3C/text%3E%3C/svg%3E'">
+                    <div class="vlad-title">
+                        <h3>Vlad <span class="instagram-check"><i class="fab fa-instagram"></i> Certified Checkmark</span></h3>
+                        <p style="color: var(--accent-light); font-weight: 500; margin: 0;">Certified Expert – Digital Strategist</p>
+                    </div>
+                </div>
+                <div class="marc-description">
+                    <p><strong>Vlad is a Certified Expert</strong> with 2+ years of intensive hands-on experience in the digital world and modern technologies. He has developed a deep understanding of website creation, AI-powered solutions, digital marketing, and tech strategy—delivering real results for clients.</p>
+                    <p>Vlad isn’t just familiar with technology — he masters it, combining practical experience with strategic thinking. His expertise spans building scalable websites, crafting high-converting digital strategies, and creating AI-driven content and intelligent agents.</p>
+                    <p><strong>Driven, knowledgeable, and results-oriented</strong>, Vlad is dedicated to helping clients turn innovative ideas into profitable realities.</p>
+                </div>
+                <div class="vlad-badges">
+                    <span class="badge"><i class="fas fa-check-circle"></i> AI Workflow Architect</span>
+                    <span class="badge"><i class="fas fa-check-circle"></i> 2+ Years Digital</span>
+                    <span class="badge"><i class="fas fa-check-circle"></i> 20+ Premium Projects</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title"><h2>Portfolio Showcase</h2><p>A collection of premium digital experiences and modern concept designs.</p></div>
+            <div class="portfolio-showcase fade-in">
+                <div class="portfolio-photo">
+                    <img src="blob:https://web.whatsapp.com/6b3f4030-bb7e-4563-921b-af78e3fa680e" alt="Vlad Profile" onerror="this.src='https://via.placeholder.com/130/8B5CF6/ffffff?text=V'">
+                </div>
+                <div class="portfolio-desc">
+                    <h3>Crafted with precision & AI</h3>
+                    <p>I've designed and developed a series of modern, premium concept websites that showcase cutting-edge aesthetics, seamless UX, and AI integration. Each project is a demonstration of elite digital craftsmanship.</p>
+                    <div class="portfolio-links">
+                        <span class="portfolio-link-item"><a href="https://sites.google.com/view/devoxxa-ai-wealth-vault/demo" target="_blank"><i class="fas fa-external-link-alt"></i> Devoxxa AI Vault</a></span>
+                        <span class="portfolio-link-item"><a href="https://sites.google.com/view/dn-ai-wealth-vault/ai-wealth-vault_4" target="_blank"><i class="fas fa-external-link-alt"></i> DN AI Wealth</a></span>
+                        <span class="portfolio-link-item"><a href="https://sites.google.com/view/devoxxa-start-zone/start-zone_2" target="_blank"><i class="fas fa-external-link-alt"></i> Devoxxa Start Zone</a></span>
+                    </div>
+                    <div class="best-project">
+                        <i class="fas fa-trophy" style="color: #f7b32b; margin-right: 8px;"></i>
+                        <strong>Best Project Highlight:</strong> 
+                        <a href="https://vladavetisian.github.io/PracticeLab/" target="_blank">PracticeLab <i class="fas fa-arrow-right"></i></a>
+                        <p style="margin-top: 0.5rem; color: #ccc;">An innovative platform with advanced web technologies and user-centric design — my flagship concept.</p>
+                    </div>
+                    <p class="concept-note"><i class="fas fa-info-circle"></i> All websites are concept projects showcasing design & development capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title"><h2>Member Experiences</h2><p>Hear from entrepreneurs who transformed their businesses.</p></div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-content"><p>The AI automations saved me 25+ hours/month. This membership paid for itself in two weeks.</p></div><div class="testimonial-author"><div class="author-avatar">SR</div><div><h4>Sarah Reynolds</h4><p>E-commerce Founder</p></div></div></div></div>
+                    <div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-content"><p>Premium website elevated my brand, allowing me to increase rates by 40%.</p></div><div class="testimonial-author"><div class="author-avatar">MJ</div><div><h4>Michael Johnson</h4><p>Management Consultant</p></div></div></div></div>
+                    <div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-content"><p>Affiliate training program changed my approach. Now earning $8,000+ monthly.</p></div><div class="testimonial-author"><div class="author-avatar">AK</div><div><h4>Alex Kim</h4><p>Digital Marketer</p></div></div></div></div>
+                </div>
+                <div class="slider-controls"><button class="slider-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button><button class="slider-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button></div>
+            </div>
+            <div class="reviews-note"><i class="fas fa-pen-fade"></i> These are concept reviews for demonstration purposes.</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-title"><h2>Begin Your Transformation</h2><p>Limited memberships available.</p></div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-detail"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Location</h4><p>Los Angeles</p></div></div>
+                    <div class="contact-detail"><div class="contact-icon"><i class="fas fa-clock"></i></div><div><h4>Availability</h4><p>By appointment only</p></div></div>
+                    <div class="contact-detail"><div class="contact-icon"><i class="fas fa-user-lock"></i></div><div><h4>Exclusivity</h4><p>Maximum 50 active members</p></div></div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form id="contactForm">
+                        <div class="form-group"><label>Full Name</label><input type="text" id="name" required></div>
+                        <div class="form-group"><label>Phone (WhatsApp)</label><input type="tel" id="phone" required></div>
+                        <div class="form-group"><label>Primary Interest</label>
+                            <select id="interest" required>
+                                <option value="">Select</option>
+                                <option value="website">Premium Website</option>
+                                <option value="aiagent">AI Agents</option>
+                                <option value="brand">Brand & UI/UX</option>
+                                <option value="custom">🔧 Custom Interest</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="customInterestField" style="display:none;"><label>Describe custom interest</label><textarea id="customInterest"></textarea></div>
+                        <div class="form-group"><label>Your Goals</label><textarea id="message" required></textarea></div>
+                        <button type="submit" class="btn" style="width:100%;">Request Consultation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="terms-section" style="display:none;"><div class="container"><div class="terms-card" style="background:var(--card-bg); padding:2rem; border-radius:24px;"><h2>Terms & Conditions</h2><p>Elite Circle Club terms ... <button onclick="hideTerms()" class="btn" style="margin-top:1rem;">Close</button></p></div></div></section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content"><div class="footer-logo"><div class="logo-icon"><i class="fas fa-crown"></i></div>EliteCircle</div><div class="footer-links"><a href="#hero">Home</a><a href="#services">Services</a><a href="#" onclick="showTerms(); return false;">Terms</a></div><div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div></div>
+            <div class="copyright"><p>&copy; 2026 Elite Circle Premium Services. All rights reserved. Los Angeles, Beverly Hills</p></div>
+        </div>
+    </footer>
+
+    <div id="successModal" class="modal"><div class="modal-content"><h3>Application Submitted!</h3><a href="http://wa.me/18184056632" target="_blank" class="btn whatsapp" style="background:#25D366;">Open WhatsApp</a><button id="closeModalBtn" class="btn" style="margin-top:1rem;">Close</button></div></div>
+
+    <script>
+        (function(){
+            function hideLoadingScreen() {
+                const loader = document.getElementById('loading');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    setTimeout(() => { if (loader.parentNode) loader.style.display = 'none'; }, 500);
+                }
+            }
+            window.addEventListener('load', hideLoadingScreen);
+            setTimeout(hideLoadingScreen, 2000);
+
+            const mobileBtn=document.getElementById('mobileMenuBtn'), mobileMenu=document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click',()=>{ mobileMenu.classList.toggle('active'); const icon=mobileBtn.querySelector('i'); icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); });
+            
+            const quickBtn=document.getElementById('quickNavBtn'), quickSide=document.getElementById('quickNavSidebar');
+            quickBtn.addEventListener('click',(e)=>{ e.stopPropagation(); quickBtn.classList.toggle('active'); quickSide.classList.toggle('active'); });
+            document.addEventListener('click',(e)=>{ if(!quickSide.contains(e.target) && !quickBtn.contains(e.target)){ quickBtn.classList.remove('active'); quickSide.classList.remove('active'); } });
+            
+            const track=document.getElementById('testimonialTrack'), slides=document.querySelectorAll('.testimonial-slide'), prev=document.getElementById('prevBtn'), next=document.getElementById('nextBtn');
+            let idx=0; 
+            function updateSlider(){ track.style.transform=`translateX(-${idx*100}%)`; }
+            next.addEventListener('click',()=>{ idx=(idx+1)%slides.length; updateSlider(); });
+            prev.addEventListener('click',()=>{ idx=(idx-1+slides.length)%slides.length; updateSlider(); });
+            setInterval(()=>{ idx=(idx+1)%slides.length; updateSlider(); },5000);
+            
+            const observer=new IntersectionObserver((e)=>{ e.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('visible'); }); },{threshold:0.1});
+            document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+            
+            const interestSelect=document.getElementById('interest'), customField=document.getElementById('customInterestField');
+            interestSelect.addEventListener('change',()=>{ customField.style.display = interestSelect.value==='custom'?'block':'none'; });
+            
+            const form=document.getElementById('contactForm'), modal=document.getElementById('successModal'), closeModal=document.getElementById('closeModalBtn');
+            form.addEventListener('submit',(e)=>{ e.preventDefault(); modal.classList.add('active'); setTimeout(()=>{ window.open('http://wa.me/18184056632?text=New%20Elite%20Inquiry','_blank'); },2000); form.reset(); customField.style.display='none'; });
+            closeModal.addEventListener('click',()=>modal.classList.remove('active'));
+            
+            window.showTerms=function(){ document.getElementById('terms-section').style.display='block'; };
+            window.hideTerms=function(){ document.getElementById('terms-section').style.display='none'; };
+            
+            document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',function(e){ const id=this.getAttribute('href'); if(id==='#'||!id) return; const el=document.querySelector(id); if(el){ e.preventDefault(); window.scrollTo({top:el.offsetTop-80, behavior:'smooth'}); } }); });
+        })();
+    </script>
+    <style>@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}</style>
+</body>
+</html>
