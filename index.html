@@ -110,11 +110,10 @@
         .testimonial-content { position: relative; margin-bottom: 1.5rem; padding-left: 1.5rem; }
         .testimonial-content:before { content: '"'; position: absolute; left: 0; top: -10px; font-size: 3rem; color: var(--accent); opacity: 0.3; font-family: Georgia, serif; }
         .testimonial-author { display: flex; align-items: center; gap: 1rem; }
-        .author-avatar { width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; }
+        .author-avatar { width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.4rem; }
         .slider-controls { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
         .slider-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .slider-btn:hover { background: var(--accent); border-color: var(--accent); }
-        .reviews-note { text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px dashed var(--border-color); padding-top: 1.5rem; }
         .about-vlad { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2.5rem; margin-top: 3rem; box-shadow: var(--shadow); }
         .vlad-header { display: flex; align-items: center; gap: 1.8rem; margin-bottom: 1.8rem; flex-wrap: wrap; }
         .vlad-photo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 0 20px rgba(139,92,246,0.5); background: #1e1e2a; }
@@ -129,11 +128,7 @@
         .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 500; }
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.875rem 1rem; background-color: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-family: 'Inter', sans-serif; }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
-        /* FIX: Make dropdown options visible */
-        .form-group select option {
-            background-color: var(--card-bg) !important;
-            color: var(--text-primary) !important;
-        }
+        .form-group select option { background-color: var(--card-bg) !important; color: var(--text-primary) !important; }
         footer { background-color: var(--darker-bg); border-top: 1px solid var(--border-color); padding: 3rem 0 2rem; }
         .footer-content { display: flex; flex-direction: column; gap: 2rem; }
         @media (min-width: 768px) { .footer-content { flex-direction: row; justify-content: space-between; align-items: center; } }
@@ -216,7 +211,6 @@
                 <div class="service-card fade-in"><div class="service-icon"><i class="fas fa-paint-brush"></i></div><h3>Brand & UI/UX Design</h3><p>Complete visual identity and user interface designs that communicate luxury and professionalism.</p></div>
             </div>
 
-            <!-- Vlad Profile with photo -->
             <div class="about-vlad fade-in">
                 <div class="vlad-header">
                     <img class="vlad-photo" src="https://www.image2url.com/r2/default/images/1776653212559-ebda3066-73a2-4ab8-bc55-b648a18fc521.jpeg" alt="Vlad" onerror="this.style.background='linear-gradient(145deg, #8B5CF6, #7C3AED)'; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%238B5CF6\'/%3E%3Ctext x=\'50\' y=\'67\' font-size=\'50\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\'%3EV%3C/text%3E%3C/svg%3E'">
@@ -227,7 +221,7 @@
                 </div>
                 <div class="marc-description">
                     <p><strong>Vlad is a Certified Expert</strong> with 2+ years of intensive hands-on experience in the digital world and modern technologies. He has developed a deep understanding of website creation, AI-powered solutions, digital marketing, and tech strategy—delivering real results for clients.</p>
-                    <p>Vlad isn’t just familiar with technology — he masters it, combining practical experience with strategic thinking. His expertise spans building scalable websites, crafting high-converting digital strategies, and creating AI-driven content and intelligent agents.</p>
+                    <p>Vlad isn't just familiar with technology — he masters it, combining practical experience with strategic thinking. His expertise spans building scalable websites, crafting high-converting digital strategies, and creating AI-driven content and intelligent agents.</p>
                     <p><strong>Driven, knowledgeable, and results-oriented</strong>, Vlad is dedicated to helping clients turn innovative ideas into profitable realities.</p>
                 </div>
                 <div class="vlad-badges">
@@ -244,10 +238,7 @@
             <div class="section-title"><h2>Portfolio Showcase</h2><p>A collection of premium digital experiences and modern concept designs.</p></div>
             <div class="portfolio-showcase fade-in">
                 <div class="portfolio-photo">
-                    <img 
-  src="https://cdn.phototourl.com/free/2026-04-23-319ed597-6091-4e37-bc67-32619150628f.jpg" 
-  alt="Vlad Profile"
-  onerror="this.src='https://via.placeholder.com/130/8B5CF6/ffffff?text=V'">
+                    <img src="https://cdn.phototourl.com/free/2026-04-23-319ed597-6091-4e37-bc67-32619150628f.jpg" alt="Vlad Profile" onerror="this.src='https://via.placeholder.com/130/8B5CF6/ffffff?text=V'">
                 </div>
                 <div class="portfolio-desc">
                     <h3>Crafted with precision & AI</h3>
@@ -271,16 +262,48 @@
 
     <section class="testimonials" id="testimonials">
         <div class="container">
-            <div class="section-title"><h2>Member Experiences</h2><p>Hear from entrepreneurs who transformed their businesses.</p></div>
+            <div class="section-title"><h2>Client Reviews</h2><p>Real words from real clients.</p></div>
             <div class="testimonial-slider">
                 <div class="testimonial-track" id="testimonialTrack">
-                    <div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-content"><p>The AI automations saved me 25+ hours/month. This membership paid for itself in two weeks.</p></div><div class="testimonial-author"><div class="author-avatar">SR</div><div><h4>Sarah Reynolds</h4><p>E-commerce Founder</p></div></div></div></div>
-                    <div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-content"><p>Premium website elevated my brand, allowing me to increase rates by 40%.</p></div><div class="testimonial-author"><div class="author-avatar">MJ</div><div><h4>Michael Johnson</h4><p>Management Consultant</p></div></div></div></div>
-                    <div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-content"><p>Affiliate training program changed my approach. Now earning $8,000+ monthly.</p></div><div class="testimonial-author"><div class="author-avatar">AK</div><div><h4>Alex Kim</h4><p>Digital Marketer</p></div></div></div></div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>He made my website really fast, under 1 day, as he said. Recommending to everyone!</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">⭐</div>
+                                <div><h4>Private Client</h4><p>Verified Customer</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>Finally got my first website. Made it under 3 days, that's crazy. I recommend him.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">⭐</div>
+                                <div><h4>Private Client</h4><p>Verified Customer</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>He made my website in 2 days, as he said. Love it.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">⭐</div>
+                                <div><h4>Private Client</h4><p>Verified Customer</p></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="slider-controls"><button class="slider-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button><button class="slider-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button></div>
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
             </div>
-            <div class="reviews-note"><i class="fas fa-pen-fade"></i> These are concept reviews for demonstration purposes.</div>
         </div>
     </section>
 
@@ -292,8 +315,7 @@
                     <h3>Contact Information</h3>
                     <div class="contact-detail"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Location</h4><p>Los Angeles</p></div></div>
                     <div class="contact-detail"><div class="contact-icon"><i class="fas fa-clock"></i></div><div><h4>Availability</h4><p>By appointment only</p></div></div>
-                    <div class="contact-detail"><div class="contact-icon"><i class="fas fa-user-lock"></i></div><div><h4>Exclusivity</h4><p>Contact us to get started
-</p></div></div>
+                    <div class="contact-detail"><div class="contact-icon"><i class="fas fa-user-lock"></i></div><div><h4>Exclusivity</h4><p>Contact us to get started</p></div></div>
                 </div>
                 <div class="contact-form fade-in">
                     <form id="contactForm">
